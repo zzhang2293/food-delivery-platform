@@ -98,4 +98,21 @@ public class EmployeeController {
         return Result.success(employeePage);
 
     }
+
+    @PutMapping
+    public Result<String> update(HttpServletRequest request, @RequestBody Employee employee){
+        log.info(employee.toString());
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        employee.setUpdateUser(empId);
+        employee.setUpdateTime(LocalDateTime.now());
+        employeeService.updateById(employee);
+        return Result.success("the status has been changed");
+    }
+
+    @GetMapping("/{id}")
+    public Result<Employee> queryEmployeeById(@PathVariable long id){
+        log.info("id = {}", id);
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
 }

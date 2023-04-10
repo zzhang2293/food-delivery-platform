@@ -47,7 +47,7 @@
         </el-form-item>
         <el-form-item
           label="gender:"
-          prop="sex"
+          prop="gender"
         >
           <el-radio-group v-model="ruleForm.gender">
             <el-radio label="male"></el-radio>
@@ -146,7 +146,7 @@
               if (String(res.code) === '1') {
                 console.log(res.data)
                 this.ruleForm = res.data
-                this.ruleForm.sex = res.data.sex === '0' ? 'female' : 'male'
+                this.ruleForm.gender = res.data.gender === 'female' ? 'female' : 'male'
                 // this.ruleForm.password = ''
               } else {
                 this.$message.error(res.msg || 'error')
@@ -159,7 +159,7 @@
                 if (this.actionType === 'add') {
                   const params = {
                     ...this.ruleForm,
-                    sex: this.ruleForm.sex === 'female' ? '0' : '1'
+                    gender: this.ruleForm.gender === 'female' ? 'female' : 'male'
                   }
                   addEmployee(params).then(res => {
                     if (res.code === 1) {
@@ -173,7 +173,7 @@
                           'phone': '',
                           // 'password': '',
                           // 'rePassword': '',/
-                          'sex': 'male',
+                          'gender': 'male',
                           'idNumber': ''
                         }
                       }
@@ -186,7 +186,7 @@
                 } else {
                   const params = {
                     ...this.ruleForm,
-                    sex: this.ruleForm.sex === 'female' ? '0' : '1'
+                    gender: this.ruleForm.gender === 'female' ? '0' : '1'
                   }
                   editEmployee(params).then(res => {
                     if (res.code === 1) {
