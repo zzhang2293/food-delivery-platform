@@ -2,36 +2,34 @@ package com.fooddeliveryplatform.domain;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * employee entity
- */
-@Data
-public class Employee implements Serializable {
-
+public class Setmeal implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    private String username;
+    // category
+    private Long CategoryId;
 
     private String name;
 
-    private String password;
-
-    private String phone;
-
-    private String gender;
-
-    private String idNumber; // identify number   in database it is id_number
+    private BigDecimal price;
 
     private Integer status;
+
+    private Integer code;
+
+    private String description;
+
+    private String image;
+
+    private String is_deleted;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime; // database create_time

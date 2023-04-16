@@ -3,6 +3,7 @@ package com.fooddeliveryplatform.filter;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.alibaba.fastjson.JSON;
 import com.fooddeliveryplatform.result.Result;
+import com.fooddeliveryplatform.util.BaseContext;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ import java.io.IOException;
 @Slf4j
 @WebFilter(filterName = "loginCheckFilter", urlPatterns = "/*")
 public class LoginCheckFilter implements Filter {
-    // 路径匹配器，支持通配符
+
     public static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
     public static final String[] URI = new String[]{
             "/employee/login",
@@ -42,6 +43,8 @@ public class LoginCheckFilter implements Filter {
         }
 
         if (httpServletRequest.getSession().getAttribute("employee") != null) {
+            Long empId = (Long) httpServletRequest.getSession().getAttribute("employee");
+            BaseContext.setCurrentId(empId);
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }

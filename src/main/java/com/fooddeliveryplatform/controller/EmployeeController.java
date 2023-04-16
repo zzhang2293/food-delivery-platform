@@ -1,13 +1,11 @@
 package com.fooddeliveryplatform.controller;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fooddeliveryplatform.domain.Employee;
 import com.fooddeliveryplatform.result.Result;
 import com.fooddeliveryplatform.service.EmployeeService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.websocket.server.PathParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
@@ -67,11 +65,11 @@ public class EmployeeController {
         log.info("new employee, employee info: {}", employee.toString());
         // set original password, encoding with md5
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setCreateTime(LocalDateTime.now());
-        Long empId = (Long) request.getSession().getAttribute("employee");
-        employee.setCreateUser(empId);
-        employee.setUpdateUser(empId);
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setCreateTime(LocalDateTime.now());
+//        Long empId = (Long) request.getSession().getAttribute("employee");
+//        employee.setCreateUser(empId);
+//        employee.setUpdateUser(empId);
         employeeService.save(employee);
 
         return Result.success("new employee has been created");

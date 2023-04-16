@@ -8,42 +8,30 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * employee entity
- */
 @Data
-public class Employee implements Serializable {
-
+public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-
     private Long id;
 
-    private String username;
+    // type 1 represent food, 2 represent combo
+    private Integer type;
 
+    // name
     private String name;
 
-    private String password;
-
-    private String phone;
-
-    private String gender;
-
-    private String idNumber; // identify number   in database it is id_number
-
-    private Integer status;
+    private Integer sort;
 
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime; // database create_time
+    private LocalDateTime createTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime; // database update_time
+    private LocalDateTime updateTime;
 
     @TableField(fill = FieldFill.INSERT)
     private Long createUser;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
-
 
 }

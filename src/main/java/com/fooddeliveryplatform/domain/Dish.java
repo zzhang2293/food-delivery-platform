@@ -6,38 +6,40 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * employee entity
+ * entity
  */
 @Data
-public class Employee implements Serializable {
-
+public class Dish implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    private String username;
-
     private String name;
 
-    private String password;
+    private Long categoryId;
 
-    private String phone;
+    private BigDecimal price;
 
-    private String gender;
+    private String code;
 
-    private String idNumber; // identify number   in database it is id_number
+    private String image;
+
+    private String description;
 
     private Integer status;
 
+    private Integer sort;
+
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime; // database create_time
+    private LocalDateTime createTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime; // database update_time
+    private LocalDateTime updateTime;
 
     @TableField(fill = FieldFill.INSERT)
     private Long createUser;
